@@ -1,4 +1,4 @@
-package core.dto.pokemon;
+package com.pokemon.gateway.core.dto.pokemon;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TypeDTO {
-    @JsonProperty("name")
-    private String name;
+public class TypesDTO {
+    @JsonProperty("type")
+    private TypeDTO type;
 }

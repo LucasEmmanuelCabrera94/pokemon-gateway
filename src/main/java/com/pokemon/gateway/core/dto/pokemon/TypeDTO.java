@@ -1,4 +1,4 @@
-package core.dto.pokemon;
+package com.pokemon.gateway.core.dto.pokemon;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,20 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
+@ToString
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class PokemonDTO {
-    @JsonProperty("id")
-    private long id;
+public class TypeDTO {
     @JsonProperty("name")
     private String name;
-    @JsonProperty("types")
-    private List<TypesDTO> types;
 }
-

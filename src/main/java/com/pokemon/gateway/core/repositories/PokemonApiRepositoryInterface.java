@@ -1,4 +1,4 @@
-package core.repositories;
+package com.pokemon.gateway.core.repositories;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 public interface PokemonApiRepositoryInterface {
 
-    String getPokemon(PokemonModel pokemon);
+    void getPokemon(PokemonModel pokemon);
 
     @Builder
     @Getter

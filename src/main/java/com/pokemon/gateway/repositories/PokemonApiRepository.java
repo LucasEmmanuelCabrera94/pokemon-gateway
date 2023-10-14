@@ -1,9 +1,8 @@
-package repositories;
+package com.pokemon.gateway.repositories;
 
 import com.google.gson.Gson;
-import com.google.inject.Singleton;
-import core.dto.pokemon.PokemonDTO;
-import core.repositories.PokemonApiRepositoryInterface;
+import com.pokemon.gateway.core.dto.pokemon.PokemonDTO;
+import com.pokemon.gateway.core.repositories.PokemonApiRepositoryInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +10,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-@Singleton
 public class PokemonApiRepository implements PokemonApiRepositoryInterface {
     private static final String apiUrl = "https://pokeapi.co/api/v2/pokemon/%s";
 
-    @Override
-    public String getPokemon(PokemonModel pokemon) {
+    public void getPokemon(PokemonModel pokemon) {
         try{
             URL url = new URL(String.format(apiUrl, pokemon.getName()));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -26,11 +23,9 @@ public class PokemonApiRepository implements PokemonApiRepositoryInterface {
             validateResponse(responseCode);
 
             consumeResponse(connection);
-            return null;
         } catch (Exception e){
             //TODO: hacer throw new Exceptions
             e.printStackTrace();
-            return null;
         }
     }
 
