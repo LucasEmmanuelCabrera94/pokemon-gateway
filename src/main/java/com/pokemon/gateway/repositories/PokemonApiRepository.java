@@ -13,7 +13,7 @@ import java.net.URL;
 public class PokemonApiRepository implements PokemonApiRepositoryInterface {
     private static final String apiUrl = "https://pokeapi.co/api/v2/pokemon/%s";
 
-    public void getPokemon(PokemonModel pokemon) {
+    public PokemonDTO getPokemon(PokemonModel pokemon) {
         try{
             URL url = new URL(String.format(apiUrl, pokemon.getName()));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -22,11 +22,12 @@ public class PokemonApiRepository implements PokemonApiRepositoryInterface {
 
             validateResponse(responseCode);
 
-            consumeResponse(connection);
+            return consumeResponse(connection);
         } catch (Exception e){
             //TODO: hacer throw new Exceptions
             e.printStackTrace();
         }
+        return null;
     }
 
     private static void validateResponse(int responseCode) throws Exception {
@@ -35,7 +36,7 @@ public class PokemonApiRepository implements PokemonApiRepositoryInterface {
         }
     }
 
-    private static void consumeResponse(HttpURLConnection connection) throws IOException {
+    private static PokemonDTO consumeResponse(HttpURLConnection connection) throws IOException {
         // Leer la respuesta del servidor
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder response = new StringBuilder();
@@ -47,8 +48,6 @@ public class PokemonApiRepository implements PokemonApiRepositoryInterface {
         in.close();
 
         Gson gson = new Gson();
-        PokemonDTO pokemonDTO = gson.fromJson(response.toString(), PokemonDTO.class);
-        System.out.println(pokemonDTO.toString());
-
+        return gson.fromJson(response.toString(), PokemonDTO.class);
     }
 }

@@ -1,5 +1,7 @@
 package com.pokemon.gateway;
 
+import com.pokemon.gateway.core.controller.RestController;
+import com.pokemon.gateway.core.dto.pokemon.PokemonDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,13 +14,10 @@ public class PokemonGatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PokemonGatewayApplication.class, args);
-		
-		PokemonApiRepositoryInterface.PokemonModel requestModel =
-				PokemonApiRepositoryInterface.PokemonModel.builder()
-						.name("charizard")
-						.build();
+		RestController restController = new RestController();
+		PokemonDTO charizard = restController.get();
+		System.out.println(charizard);
 
-		pokemonApiRepository.getPokemon(requestModel);
 	}
 
 }

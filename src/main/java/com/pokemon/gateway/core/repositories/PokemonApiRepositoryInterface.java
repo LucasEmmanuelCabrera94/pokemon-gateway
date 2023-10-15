@@ -1,5 +1,6 @@
 package com.pokemon.gateway.core.repositories;
 
+import com.pokemon.gateway.core.dto.pokemon.PokemonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 
 public interface PokemonApiRepositoryInterface {
 
-    void getPokemon(PokemonModel pokemon);
+    PokemonDTO getPokemon(PokemonModel pokemon);
 
     @Builder
     @Getter
